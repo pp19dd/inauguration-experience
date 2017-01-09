@@ -7,7 +7,7 @@ intro {
     max-width:1280px;
     margin: auto;
 }
-intro p { line-height: 1.5em; font-size: 1.2em; }
+intro p, .range_label { line-height: 1.5em; font-size: 1.2em; }
 
 #map-row {
     margin-top: 2em;
@@ -39,9 +39,11 @@ intro text { display:block; padding-top: 1em; padding-bottom:1em; }
 
 range { display: flex; }
 
-#ranger_left { flex-grow: 1; padding-right: 1em; }
+#ranger_left { flex-grow: 1; padding-right: 1em; white-space: nowrap }
 #ranger { flex-grow: 10 }
-#ranger_right { flex-grow: 1; padding-left: 1em; }
+#ranger_right { flex-grow: 1; padding-left: 1em; white-space: nowrap }
 
 shout { display: block }
 shout img { width: 100% }
+
+.seen_count { font-weight: bold }

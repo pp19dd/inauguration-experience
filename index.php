@@ -22,10 +22,19 @@
             <text>
                 <?php echo $text->intro ?>
             </text>
+            <p>
+                <span><?php echo $text->counts_all ?></span>
+                <span class="seen_label seen_twitter">Twitter: </span><span class="seen_count seen_twitter">0</span>
+                <span class="seen_label seen_instagram">Instagram: </span><span class="seen_count seen_instagram">0</span>
+                <span class="seen_label seen_youtube">Youtube: </span><span class="seen_count seen_youtube">0</span>
+                <span class="seen_label seen_soundcloud">Soundcloud: </span><span class="seen_count seen_soundcloud">0</span>
+                <span class="seen_label seen_facebook">Facebook: </span><span class="seen_count seen_facebook">0</span>
+                <!--<span class="seen_label seen_total"><?php echo $text->counts_total ?>: </span><span class="seen_count seen_total">0</span>-->
+            </p>
             <range>
-                <div class="fontly" id="ranger_left">a</div>
+                <div class="fontly range_label" id="ranger_left"><?php echo $text->rewinder ?></div>
                 <input type="range" id="ranger" min="0" max="10" step="1" value="0" />
-                <div class="fontly" id="ranger_right">b</div>
+                <div class="fontly range_label" id="ranger_right"><?php echo date("h:i A") ?></div>
             </range>
             <div id="map-row">
                 <div id="embed"></div>

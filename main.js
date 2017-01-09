@@ -4,7 +4,9 @@ function GetMap() {
     map = new Microsoft.Maps.Map(config.map_id, {
         credentials: config.key,
         center: new Microsoft.Maps.Location(config.center.lat, config.center.lng),
-        zoom: config.center.zoom
+        zoom: config.center.zoom,
+        showMapTypeSelector: false,
+        disableScrollWheelZoom: true
     });
 
     update_data();
@@ -35,6 +37,35 @@ $(document).ready(function() {
 
 var rendered_ids = {};
 var rendered_pts = [];
+var counts = {
+    seen: {
+        twitter: 0,
+        facebook: 0,
+        instagram: 0,
+        soundcloud: 0,
+        youtube: 0,
+        total: 0
+    },
+    available: {
+        twitter: 0,
+        facebook: 0,
+        instagram: 0,
+        soundcloud: 0,
+        youtube: 0,
+        total: 0
+    }
+};
+
+function render_counts() {
+    for( var k in counts.seen )(function(key) {
+        $(".seen_count.seen_" + key).html(
+            counts.seen[key] + "/" + counts.available[key]
+        );
+    })(k);
+    // $("#seen_" + pt.provider).html( seen[pt.provider] );
+    // $("#seen_total").html( seen.total );
+
+}
 
 function render_point_shout( pt ) {
     // console.info( pt );
@@ -51,18 +82,48 @@ function map_show_points( cutoff ) {
     }
 }
 
+function do_clear() {
+    for( var i = 0; i < localStorage.length; i++ )(function(key) {
+        if( key.indexOf("seen_") === 0 ) {
+            localStorage.removeItem(key);
+        }
+    })(localStorage.key(i));
+}
+
+function do_seen(pt, pushpin) {
+    localStorage.setItem("seen_" + pt.id, "yes");
+    pushpin.setOptions({ icon: pushpin.getIcon() + ".seen.png"});
+    counts.seen[pt.provider]++;
+    counts.seen.total++;
+    render_counts();
+}
+
 function render_point_map( pt ) {
-    try {
-        var pushpin = new Microsoft.Maps.Pushpin(
-            new Microsoft.Maps.Location(pt.lat, pt.lng), null
-        );
-        Microsoft.Maps.Events.addHandler(pushpin, 'click', function() {
-            render_overlay( pt, pushpin );
-        });
-        map.entities.push(pushpin);
-        rendered_pts.push( pushpin );
-    } catch( e ) {
+    var pushpin = new Microsoft.Maps.Pushpin(
+        new Microsoft.Maps.Location(pt.lat, pt.lng), {
+            icon: "img/map-" + pt.provider + ".png",
+            width: 32,
+            height: 37
+        }
+    );
+
+    var x = localStorage.getItem("seen_" + pt.id);
+    if( x == "yes" ) {
+        do_seen(pt, pushpin);
     }
+
+    counts.available[pt.provider]++;
+    counts.available[pt.total]++;
+
+    Microsoft.Maps.Events.addHandler(pushpin, 'click', function() {
+        var current_icon = pushpin.getIcon();
+        if( current_icon.indexOf(".seen.png") === -1 ) {
+            do_seen(pt, pushpin);
+        }
+        render_overlay( pt, pushpin );
+    });
+    map.entities.push(pushpin);
+    rendered_pts.push( pushpin );
 }
 
 // delegates to display routines
@@ -94,6 +155,7 @@ function update_data() {
             })(e[i]);
 
             recompute_slider();
+            render_counts();
         }
     })
 }
