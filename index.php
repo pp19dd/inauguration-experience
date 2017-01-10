@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
-    <link href="lib/rangeslider.css" rel="stylesheet" />
+    <link href="lib/nouislider.min.css" rel="stylesheet" />
     <link href="all.css?ver=<?php echo $version ?>" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="lib/rangeslider.js?ver=<?php echo $version ?>"></script>
+    <script src="lib/nouislider.min.js?ver=<?php echo $version ?>"></script>
     <script type='text/javascript' src='//www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 </head>
 <body>
@@ -22,6 +22,17 @@
             <text>
                 <?php echo $text->intro ?>
             </text>
+            <range>
+                <div class="fontly range_label" id="ranger_left"><?php echo $text->rewinder ?></div>
+                <div id="ranger"></div>
+                <div class="fontly range_label" id="ranger_right"><?php echo date("h:i A") ?></div>
+            </range>
+            <div id="map-row">
+                <div id="embed">
+                    <div id="embed_inner"></div>
+                </div>
+                <div id="inauguration-map"></div>
+            </div>
             <p>
                 <span><?php echo $text->counts_all ?></span>
                 <span class="seen_label seen_twitter">Twitter: </span><span class="seen_count seen_twitter">0</span>
@@ -31,15 +42,6 @@
                 <span class="seen_label seen_facebook">Facebook: </span><span class="seen_count seen_facebook">0</span>
                 <!--<span class="seen_label seen_total"><?php echo $text->counts_total ?>: </span><span class="seen_count seen_total">0</span>-->
             </p>
-            <range>
-                <div class="fontly range_label" id="ranger_left"><?php echo $text->rewinder ?></div>
-                <input type="range" id="ranger" min="0" max="10" step="1" value="0" />
-                <div class="fontly range_label" id="ranger_right"><?php echo date("h:i A") ?></div>
-            </range>
-            <div id="map-row">
-                <div id="embed"></div>
-                <div id="inauguration-map"></div>
-            </div>
             <text>
                 <?php echo $text->shout ?>
             </text>

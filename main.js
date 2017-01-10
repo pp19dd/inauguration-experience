@@ -1,4 +1,5 @@
 var map;
+var slider;
 
 function GetMap() {
     map = new Microsoft.Maps.Map(config.map_id, {
@@ -13,11 +14,16 @@ function GetMap() {
 }
 
 function recompute_slider() {
-    $("#ranger").attr("max", rendered_pts.length);
-    $("#ranger").rangeslider("update", true);
+    // $("#ranger").attr("max", rendered_pts.length);
+    // $("#ranger").rangeslider("update", true);
+    slider.noUiSlider.updateOptions({
+        range: { min: 0, max: rendered_pts.length }
+    });
+    slider.noUiSlider.set([null, rendered_pts.length]);
 }
 
 $(document).ready(function() {
+    /*
     $("#ranger").rangeslider({
         polyfill: false,
 
@@ -32,8 +38,23 @@ $(document).ready(function() {
             map_show_points(value);
         }
     });
-});
+    */
+    slider = $("#ranger")[0];
 
+    noUiSlider.create(slider, {
+    	start: [ 0, 10 ],
+        behaviour: 'drag',
+        connect: true,
+        range: {
+    		'min': [ 0 ],
+    		'max': [ 10 ]
+    	}
+    });
+
+    slider.noUiSlider.on("update", function(r) {
+        map_show_points(parseInt(r[0]), parseInt(r[1]));
+    });
+});
 
 var rendered_ids = {};
 var rendered_pts = [];
@@ -72,13 +93,17 @@ function render_point_shout( pt ) {
 }
 
 function render_overlay( pt, pushpin ) {
-    $("#embed").html( pt.embed );
+    $("#embed_inner").html( pt.embed );
     // console.info( pt );
 }
 
-function map_show_points( cutoff ) {
+function map_show_points( start, cutoff ) {
+    console.info( start, cutoff );
     for( var i = 0; i < rendered_pts.length; i++ ) {
-        rendered_pts[i].setOptions( { visible: (i < cutoff ? true : false) });
+        var is_visible = true;
+        if( i < start ) is_visible = false;
+        if( i > cutoff ) is_visible = false;
+        rendered_pts[i].setOptions( { visible: is_visible });
     }
 }
 
