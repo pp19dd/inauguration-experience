@@ -29,7 +29,7 @@
             </range>
             <div id="map-row">
                 <div id="inauguration-map"></div>
-                <div id="embed">
+                <div id="embed" class="unused">
                     <div id="embed_inner">
                         <p class="instructions"><?php echo $text->instructions ?></p>
                     </div>
@@ -37,20 +37,20 @@
             </div>
             <div class="totals fontly">
                 <p><span><?php echo $text->counts_all ?></span></p>
-                <table width="100%">
+                <table class="because" width="100%">
                     <tr>
-                        <td>Twitter</td>
-                        <td>Instagram</td>
-                        <td>Youtube</td>
-                        <td>Soundcloud</td>
-                        <td>Facebook</td>
+                        <td class="unseen count_top seen_twitter">Twitter</td>
+                        <td class="unseen count_top seen_instagram">Instagram</td>
+                        <td class="unseen count_top seen_youtube">Youtube</td>
+                        <td class="unseen count_top seen_soundcloud">Soundcloud</td>
+                        <td class="unseen count_top seen_facebook">Facebook</td>
                     </tr>
                     <tr>
-                        <td><span class="seen_count seen_twitter">0</span></td>
-                        <td><span class="seen_count seen_instagram">0</span></td>
-                        <td><span class="seen_count seen_youtube">0</span></td>
-                        <td><span class="seen_count seen_soundcloud">0</span></td>
-                        <td><span class="seen_count seen_facebook">0</span></td>
+                        <td class="unseen count_bottom seen_twitter">0</td>
+                        <td class="unseen count_bottom seen_instagram">0</td>
+                        <td class="unseen count_bottom seen_youtube">0</td>
+                        <td class="unseen count_bottom seen_soundcloud">0</td>
+                        <td class="unseen count_bottom seen_facebook">0</td>
                     </tr>
                 </table>
                 <p id="reset_link"><a href="#"><?php echo $text->reset ?></a></p>

@@ -86,9 +86,20 @@ var counts = {
 
 function render_counts() {
     for( var k in counts.seen )(function(key) {
-        $(".seen_count.seen_" + key).html(
+        var node_bottom = $(".count_bottom.seen_" + key);
+        var node_top = $(".count_top.seen_" + key);
+
+        node_bottom.html(
             counts.seen[key] + "/" + counts.available[key]
         );
+
+        if( counts.seen[key] === 0 ) {
+            node_bottom.addClass("unseen");
+            node_top.addClass("unseen");
+        } else {
+            node_bottom.removeClass("unseen");
+            node_top.removeClass("unseen");
+        }
     })(k);
     // $("#seen_" + pt.provider).html( seen[pt.provider] );
     // $("#seen_total").html( seen.total );
@@ -100,6 +111,7 @@ function render_point_shout( pt ) {
 }
 
 function render_overlay( pt, pushpin ) {
+    $("#embed").removeClass("unused");
     $("#embed_inner").html( pt.embed );
 }
 
@@ -114,13 +126,9 @@ function map_show_points( start, cutoff ) {
 
 function do_clear() {
     // reset stored keys
-    //console.warn( "keys = " + localStorage.length );
     for( var k in localStorage )(function(key) {
         if( key.indexOf(storage_prefix + "seen_") === 0 ) {
             localStorage.removeItem(key);
-            console.info( "T", key );
-        } else {
-            console.info( "F", key );
         }
     })(k);
 

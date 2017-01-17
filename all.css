@@ -17,12 +17,20 @@ intro p, .range_label { line-height: 1.5em; font-size: 1.2em; }
     width: 35%;
     overflow: hidden;
 }
-#inauguration-map, div.totals {
+.unused { background-color: #dddddd }
+
+#inauguration-map {
     width:65%;
     position: relative;
     height: 500px;
     margin-right:1em;
 }
+
+div.totals {
+    width:65%;
+    margin-right:1em;
+}
+
 /*
 @media (max-width:600px) {
     #map-row { flex-direction: column }
@@ -48,8 +56,11 @@ range { display: flex; align-items: center; }
 shout { display: block }
 shout img { width: 100% }
 
-.seen_count { font-weight: bold }
+.count_bottom { font-weight: bold }
+.unseen { opacity: 0.3 }
 
 footer { height: 10em; }
 
 p.instructions { padding: 2em }
+
+.because td { width: 20% }
