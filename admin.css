@@ -1,0 +1,27 @@
+
+/* admin interface */
+admin {
+    margin-top: 1em;
+    display: flex;
+    border-top: 3px solid #AAAAAA;
+    border-bottom: 3px solid #AAAAAA;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+admin button {
+    padding: 1em;
+    border: 1px solid gray;
+    background-color: white;
+    cursor: pointer;
+    margin-right: 1em;
+}
+
+admin button:hover {
+    background-color: #0074D9;
+    color: white;
+}
+
+admin .admin-active {
+    border: 1px solid #FF4136;
+}

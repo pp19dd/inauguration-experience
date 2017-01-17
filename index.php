@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
     <link href="lib/nouislider.min.css" rel="stylesheet" />
     <link href="all.css?ver=<?php echo $version ?>" rel="stylesheet" />
+    <link href="admin.css?ver=<?php echo $version ?>" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="lib/nouislider.min.js?ver=<?php echo $version ?>"></script>
@@ -72,6 +73,7 @@ var config = {
 }
 </script>
 <script src="main.js?ver=<?php echo $version ?>"></script>
+<!--<script src="admin.js?ver=<?php echo $version ?>"></script>-->
 <footer>
 </footer>
 </body>
