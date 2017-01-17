@@ -146,8 +146,13 @@ function do_clear() {
             var new_icon = icon.substr(0,pos);
             rendered_pts[i].setOptions({ icon: new_icon });
         }
-
     }
+
+    // and the embed hint
+    $("#embed_inner").html(
+        '<p class="instructions">' + text.instructions + '</p>'
+    );
+    $("#embed").addClass("unused");
 }
 
 function do_seen(pt, pushpin) {

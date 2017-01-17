@@ -30,7 +30,7 @@
             <div id="map-row">
                 <div id="inauguration-map"></div>
                 <div id="embed" class="unused">
-                    <div id="embed_inner">
+                    <div id="embed_inner" class="fontly">
                         <p class="instructions"><?php echo $text->instructions ?></p>
                     </div>
                 </div>
@@ -59,6 +59,7 @@
     </content>
 
 <script type="text/javascript">
+var text = <?php echo json_encode($text) ?>;
 var config = {
     url: "<?php echo $url ?>",
     key: "<?php echo $key ?>",
