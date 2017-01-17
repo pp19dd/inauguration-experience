@@ -28,26 +28,33 @@
                 <div class="fontly range_label" id="ranger_right"><?php echo date("h:i A") ?></div>
             </range>
             <div id="map-row">
-                <div id="embed">
-                    <div id="embed_inner"></div>
-                </div>
                 <div id="inauguration-map"></div>
+                <div id="embed">
+                    <div id="embed_inner">
+                        <p class="instructions"><?php echo $text->instructions ?></p>
+                    </div>
+                </div>
             </div>
-            <p>
-                <span><?php echo $text->counts_all ?></span>
-                <span class="seen_label seen_twitter">Twitter: </span><span class="seen_count seen_twitter">0</span>
-                <span class="seen_label seen_instagram">Instagram: </span><span class="seen_count seen_instagram">0</span>
-                <span class="seen_label seen_youtube">Youtube: </span><span class="seen_count seen_youtube">0</span>
-                <span class="seen_label seen_soundcloud">Soundcloud: </span><span class="seen_count seen_soundcloud">0</span>
-                <span class="seen_label seen_facebook">Facebook: </span><span class="seen_count seen_facebook">0</span>
-                <!--<span class="seen_label seen_total"><?php echo $text->counts_total ?>: </span><span class="seen_count seen_total">0</span>-->
-            </p>
-            <text>
-                <?php echo $text->shout ?>
-            </text>
-            <shout>
-                <img src="https://gdb.voanews.com/74C23C67-415C-47C7-8910-3E9427C8DBF3_w1280.jpg" />
-            </shout>
+            <div class="totals fontly">
+                <p><span><?php echo $text->counts_all ?></span></p>
+                <table width="100%">
+                    <tr>
+                        <td>Twitter</td>
+                        <td>Instagram</td>
+                        <td>Youtube</td>
+                        <td>Soundcloud</td>
+                        <td>Facebook</td>
+                    </tr>
+                    <tr>
+                        <td><span class="seen_count seen_twitter">0</span></td>
+                        <td><span class="seen_count seen_instagram">0</span></td>
+                        <td><span class="seen_count seen_youtube">0</span></td>
+                        <td><span class="seen_count seen_soundcloud">0</span></td>
+                        <td><span class="seen_count seen_facebook">0</span></td>
+                    </tr>
+                </table>
+                <p id="reset_link"><a href="#"><?php echo $text->reset ?></a></p>
+            </div>
         </intro>
     </content>
 
@@ -64,5 +71,7 @@ var config = {
 }
 </script>
 <script src="main.js?ver=<?php echo $version ?>"></script>
+<footer>
+</footer>
 </body>
 </html>

@@ -15,14 +15,13 @@ intro p, .range_label { line-height: 1.5em; font-size: 1.2em; }
 }
 #embed {
     width: 35%;
-    background-color: #DDDDDD;
+    overflow: hidden;
 }
-#inauguration-map {
+#inauguration-map, div.totals {
     width:65%;
     position: relative;
     height: 500px;
-    background-color: #DDDDDD;
-    margin-left:1em;
+    margin-right:1em;
 }
 /*
 @media (max-width:600px) {
@@ -31,9 +30,8 @@ intro p, .range_label { line-height: 1.5em; font-size: 1.2em; }
     #embed { height: 300px; }
 }*/
 
-#embed_inner {
-    width: 35%;
-}
+#embed_inner { }
+#embed_inner iframe { width: 100%; max-width: 100% }
 
 .noUi-connect {
     background-color: #1f2ebb;
@@ -51,3 +49,7 @@ shout { display: block }
 shout img { width: 100% }
 
 .seen_count { font-weight: bold }
+
+footer { height: 10em; }
+
+p.instructions { padding: 2em }

@@ -1,5 +1,6 @@
 var map;
 var slider;
+var storage_prefix = "inauguration-map-";
 
 function GetMap() {
     map = new Microsoft.Maps.Map(config.map_id, {
@@ -54,6 +55,12 @@ $(document).ready(function() {
     slider.noUiSlider.on("update", function(r) {
         map_show_points(parseInt(r[0]), parseInt(r[1]));
     });
+
+    $("#reset_link a").click(function() {
+        do_clear();
+        render_counts();
+        return( false );
+    });
 });
 
 var rendered_ids = {};
@@ -89,16 +96,14 @@ function render_counts() {
 }
 
 function render_point_shout( pt ) {
-    // console.info( pt );
+
 }
 
 function render_overlay( pt, pushpin ) {
     $("#embed_inner").html( pt.embed );
-    // console.info( pt );
 }
 
 function map_show_points( start, cutoff ) {
-    console.info( start, cutoff );
     for( var i = 0; i < rendered_pts.length; i++ ) {
         var is_visible = true;
         if( i < start ) is_visible = false;
@@ -108,15 +113,37 @@ function map_show_points( start, cutoff ) {
 }
 
 function do_clear() {
-    for( var i = 0; i < localStorage.length; i++ )(function(key) {
-        if( key.indexOf("seen_") === 0 ) {
+    // reset stored keys
+    //console.warn( "keys = " + localStorage.length );
+    for( var k in localStorage )(function(key) {
+        if( key.indexOf(storage_prefix + "seen_") === 0 ) {
             localStorage.removeItem(key);
+            console.info( "T", key );
+        } else {
+            console.info( "F", key );
         }
-    })(localStorage.key(i));
+    })(k);
+
+    // reset internal counter
+    for( var k in counts.seen )(function(key) {
+        counts.seen[k] = 0;
+    })(k);
+
+    // and map point icons
+    for( var i = 0; i < rendered_pts.length; i++ ) {
+        var icon = rendered_pts[i].getIcon();
+        var pos = icon.indexOf(".seen.png");
+
+        if( pos !== -1 ) {
+            var new_icon = icon.substr(0,pos);
+            rendered_pts[i].setOptions({ icon: new_icon });
+        }
+
+    }
 }
 
 function do_seen(pt, pushpin) {
-    localStorage.setItem("seen_" + pt.id, "yes");
+    localStorage.setItem(storage_prefix + "seen_" + pt.id, "yes");
     pushpin.setOptions({ icon: pushpin.getIcon() + ".seen.png"});
     counts.seen[pt.provider]++;
     counts.seen.total++;
@@ -132,7 +159,7 @@ function render_point_map( pt ) {
         }
     );
 
-    var x = localStorage.getItem("seen_" + pt.id);
+    var x = localStorage.getItem(storage_prefix + "seen_" + pt.id);
     if( x == "yes" ) {
         do_seen(pt, pushpin);
     }

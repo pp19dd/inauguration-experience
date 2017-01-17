@@ -5,6 +5,8 @@
         "shout": "<p>Put yourself in the crowd! Tweet #2trump with your hopes for President Trump's first term. Selected messages will display below.</p>",
         "counts_all": "Have you seen them all?",
         "counts_total": "Total",
-        "rewinder": "Rewinder"
+        "rewinder": "Timeline",
+        "instructions": "To get started, click or tap a map point.",
+        "reset": "Reset previously viewed items."
     }
 }
