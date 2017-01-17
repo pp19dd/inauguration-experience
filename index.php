@@ -73,7 +73,7 @@ var config = {
 }
 </script>
 <script src="main.js?ver=<?php echo $version ?>"></script>
-<!--<script src="admin.js?ver=<?php echo $version ?>"></script>-->
+<script src="admin.js?ver=<?php echo $version ?>"></script>
 <footer>
 </footer>
 </body>

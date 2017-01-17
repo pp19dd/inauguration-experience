@@ -7,9 +7,10 @@ admin {
     border-bottom: 3px solid #AAAAAA;
     padding-top: 1em;
     padding-bottom: 1em;
+    align-items: center;
 }
 
-admin button {
+admin button, #save, #preview {
     padding: 1em;
     border: 1px solid gray;
     background-color: white;
@@ -17,7 +18,7 @@ admin button {
     margin-right: 1em;
 }
 
-admin button:hover {
+admin button:hover, #save:hover, #preview:hover {
     background-color: #0074D9;
     color: white;
 }
@@ -25,3 +26,12 @@ admin button:hover {
 admin .admin-active {
     border: 1px solid #FF4136;
 }
+
+.editing { padding: 1em }
+#code {
+    width: 100%;
+    resize: vertical;
+    height: 8em;
+}
+
+#preview, #save { margin-top: 1em }
