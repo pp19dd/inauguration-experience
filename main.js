@@ -62,6 +62,18 @@ $(document).ready(function() {
     $("#reset_link a").click(function() {
         do_clear();
         render_counts();
+
+        try {
+            ga('send', 'event', {
+                eventCategory: 'Map',
+                eventAction: "Reset Click",
+                eventLabel: 'Done',
+                eventValue: 1
+            });
+        } catch( e ) {
+
+        }
+
         return( false );
     });
 });
