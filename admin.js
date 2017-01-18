@@ -7,6 +7,10 @@ $(document).ready(function() {
     do_admin_setup();
 });
 
+function do_delete(id) {
+    alert( "Deleting point # " + id + " (disabled until launch)" );
+}
+
 function do_admin_setup() {
 
     var node_admin = $(
@@ -68,7 +72,7 @@ function do_admin_setup() {
                 dataType: "json",
                 method: "post",
                 data: {
-                    pwd: $("#pwd").val(),
+                    pwd: localStorage.getItem("inauguration-map-edit-key"),
                     lat: new_point.getLocation().latitude,
                     lng: new_point.getLocation().longitude,
                     code: $("#code").val()
@@ -77,7 +81,7 @@ function do_admin_setup() {
                     //console.info( e );
                     // assume success
 
-                    $("#preview-block").html("");
+                    $("#preview-block").html(e.message);
                     $("#code").val("");
                     map.entities.remove(new_point);
                     new_point = null;
@@ -92,5 +96,4 @@ function do_admin_setup() {
 
     node_admin.append( b_hide );
     node_admin.append( b_add );
-    node_admin.append( b_pwd );
 }

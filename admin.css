@@ -40,3 +40,7 @@ admin .admin-active {
     padding:1em;
     width: 50%;
 }
+
+.delete-button {
+    padding:1em; background-color: crimson; margin-bottom: 1em;
+}

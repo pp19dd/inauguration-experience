@@ -17,8 +17,11 @@ function GetMap() {
 function recompute_slider() {
     // $("#ranger").attr("max", rendered_pts.length);
     // $("#ranger").rangeslider("update", true);
+    var slider_max = rendered_pts.length;
+    if( slider_max === 0 ) slider_max = 1;
+
     slider.noUiSlider.updateOptions({
-        range: { min: 0, max: rendered_pts.length }
+        range: { min: 0, max: slider_max }
     });
     slider.noUiSlider.set([null, rendered_pts.length]);
 }
@@ -111,8 +114,17 @@ function render_point_shout( pt ) {
 }
 
 function render_overlay( pt, pushpin ) {
+console.info( pt );
+    var html_before = "";
+
+    // add delete button, if needed
+    var edit_key = localStorage.getItem("inauguration-map-edit-key");
+    if( edit_key !== null ) {
+        html_before = "<button class='delete-button' onclick='do_delete(" + pt.id + ")'>Delete pt # " + pt.id + "</button><br/>";
+    }
+
     $("#embed").removeClass("unused");
-    $("#embed_inner").html( pt.embed );
+    $("#embed_inner").html( html_before + pt.embed );
 }
 
 function map_show_points( start, cutoff ) {

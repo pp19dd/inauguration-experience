@@ -2,13 +2,17 @@
 require( "config.php" );
 $ret = array();
 
+// ---------------------------------------------------------------------------
 // login form
+// ---------------------------------------------------------------------------
 if( empty($_POST) ) {
     include("admin-login.php");
     die;
 }
 
+// ---------------------------------------------------------------------------
 // login
+// ---------------------------------------------------------------------------
 if( isset( $_POST['iepwd']) ) {
 
     $ret["status"] = "good";
@@ -26,9 +30,60 @@ if( isset( $_POST['iepwd']) ) {
     die;
 }
 
+// ---------------------------------------------------------------------------
 // edits go here
+// ---------------------------------------------------------------------------
 $ret["input_p"] = $_POST;
 $ret["input_g"] = $_GET;
 $ret["time"] = time();
 
+// need valid edit key
+if( $_POST['pwd'] !== $admin_password ) {
+    $ret["message"] = "<strong>ERROR: Invalid edit key.</strong>";
+    echo json_encode($ret);
+    die;
+}
+
+// nodb :/
+$data = json_decode(file_get_contents("inauguration-2017.json"), true);
+
+function simple_provider_detector($code) {
+    if( stripos($code, "platform.twitter.com") !== false ) return( "twitter" );
+    if( stripos($code, "www.facebook.com/plugins/") !== false ) return( "facebook" );
+    if( stripos($code, "platform.instagram.com") !== false ) return( "instagram" );
+    if( stripos($code, "https://www.youtube.com") !== false ) return( "youtube" );
+    if( stripos($code, "https://w.soundcloud.com/") !== false ) return( "soundcloud" );
+}
+
+function get_new_id($list) {
+    if( empty($list) ) return( 1 );
+
+    $ids = array();
+    foreach( $list as $v ) {
+        $ids[] = $v["id"];
+    }
+    return(max($ids) + 1);
+}
+
+// new object
+$new = array(
+    "id" => get_new_id($data["list"]),
+    "is_deleted" => "No",
+    "destination" => "Top",
+    "provider" => simple_provider_detector($_POST['code']),
+    "lat" => $_POST["lat"],
+    "lng" => $_POST["lng"],
+    "url" => "",
+    "embed" => $_POST["code"]
+);
+
+$data["list"][] = $new;
+file_put_contents("inauguration-2017.json", json_encode($data));
+$ret["status"] = "good";
+# $data = json_decode(file_get_contents("inauguration-2017.json"), true);
+#$ret["message"] = "<pre>" . htmlentities(print_r($data["list"][0], true)) . "</pre>";
+#$ret["message"] = "<pre>" . htmlentities(print_r($_POST, true)) . "</pre>";
+
 echo json_encode($ret);
+die;
+#echo json_encode( $data->list );
