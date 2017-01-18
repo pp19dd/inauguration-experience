@@ -1,5 +1,7 @@
 <?php
 
+# define("DEV", true);
+
 // no trailing slash
 $url = "http://localhost";
 
