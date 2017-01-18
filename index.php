@@ -5,6 +5,14 @@
     <title><?php echo $text->title ?></title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+    <link href="lib/nouislider.min.css" rel="stylesheet" />
+    <link href="all.css?ver=<?php echo $version ?>" rel="stylesheet" />
+    <link href="admin.css?ver=<?php echo $version ?>" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="lib/nouislider.min.js?ver=<?php echo $version ?>"></script>
+    <script type='text/javascript' src='//www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 
 <?php if( !defined("DEV") ) { ?>
 
@@ -21,14 +29,6 @@
 
 <?php } ?>
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
-    <link href="lib/nouislider.min.css" rel="stylesheet" />
-    <link href="all.css?ver=<?php echo $version ?>" rel="stylesheet" />
-    <link href="admin.css?ver=<?php echo $version ?>" rel="stylesheet" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="lib/nouislider.min.js?ver=<?php echo $version ?>"></script>
-    <script type='text/javascript' src='//www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 </head>
 <body>
 <?php if( !defined("DEV") ) { ?>
