@@ -1,34 +1,113 @@
 body, html { margin: 0; padding:0; width: 100%; height: 100%; }
-h1, content p, .fontly { font-family: 'Raleway', sans-serif; font-weight: normal; }
+header, h1, content p, .fontly { font-family: 'Raleway', sans-serif; font-weight: normal; }
 content, intro { display: block }
-content { }
-intro {
-    padding: 1em;
+
+content {
+    margin: 0 auto;
     max-width:1280px;
-    margin: auto;
+    width: 100%;
 }
+
+content > #map-experience {
+    margin: 0 5%;
+}
+
 intro p, .range_label { line-height: 1.5em; font-size: 1.2em; }
+
+
+
+img { display: block; }
+
+
+
+.wrapper {
+    background-color: #222;
+    color: #999;
+    width: 100%;
+}
+
+header {
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: .5em 0;
+    width: 100%;
+}
+
+header > #voa-logo { display: inline-block; vertical-align: middle; margin-left: 5%; }
+
+header > h1 {
+    display: inline-block;
+    font-size: .8em;
+    font-weight: bold;
+    line-height: 100%;
+    margin: 0;
+    max-width: 40%;
+    padding: 0 0 0 .5em;
+    text-transform: uppercase;
+    vertical-align: middle;
+    /*word-wrap: break-word;*/
+}
+
+header a {
+    color: #999;
+    text-decoration: none;
+}
+
+header > nav > ul {
+    margin: 0;
+    padding: 0;
+}
+
+header > nav > ul > li {
+    list-style: none;
+}
+
+.bunting {
+    clear: both;
+    display: block;
+    margin: 0 auto;
+    width: 33%;
+    max-width: 300;
+    min-width: 200px;
+}
+
+
+.header-icon {
+    background-color: transparent;
+    background-image: url(http://projects.voanews.com/inaugural-comparison/img/icons/icons_default.png);
+    background-repeat: no-repeat;
+    background-size: 60px auto;
+    display: inline-block;
+    vertical-align: middle;
+    height: 30px;
+    width: 30px;
+}
+
+#shareTwitter .header-icon  { background-position: 0 -60px; }
+#shareFacebook .header-icon { background-position: 5px -90px; }
+#menuButton.header-icon     { background-position: 0 -30px; float: right; margin-right: calc(5% + 1em); }
+
 
 #map-row {
     margin-top: 2em;
-    display: flex;
+    display: block;
 }
 #embed {
-    width: 35%;
+    width: 100%;
     overflow: hidden;
 }
 .unused { background-color: #dddddd }
 
 #inauguration-map {
-    width:65%;
+    width:100%;
     position: relative;
-    height: 500px;
-    margin-right:1em;
+    height: 300px;
+    margin-right:0em;
 }
 
 div.totals {
-    width:65%;
-    margin-right:1em;
+    width:100%;
+    margin-right:0em;
 }
 
 /*
@@ -47,7 +126,7 @@ div.totals {
 intro h1 img { margin-right: 1em; }
 intro text { display:block; padding-top: 1em; padding-bottom:1em; }
 
-range { display: flex; align-items: center; }
+.range { display: block; align-items: center; }
 
 #ranger_left { flex-grow: 1; padding-right: 1em; white-space: nowrap }
 #ranger { flex-grow: 10 }
@@ -64,3 +143,41 @@ footer { height: 10em; }
 p.instructions { padding: 2em }
 
 .because td { width: 20% }
+
+
+
+
+@media (min-width: 600px) {
+
+    header > h1 {
+        font-size: 1em;
+    }
+
+    header > nav > ul > li {
+        display: inline-block;
+    }
+
+    .social-share-text { display: none; visibility: hidden; }
+
+    .range { display: flex; align-items: center; }
+
+
+
+    #map-row {
+        margin-top: 2em;
+        display: flex;
+    }
+    #embed {
+        width: 35%;
+        overflow: hidden;
+    }
+    .unused { background-color: #dddddd }
+
+    #inauguration-map {
+        width:65%;
+        position: relative;
+        height: 500px;
+        margin-right:1em;
+    }
+
+}
