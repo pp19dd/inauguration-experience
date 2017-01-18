@@ -114,7 +114,6 @@ function render_point_shout( pt ) {
 }
 
 function render_overlay( pt, pushpin ) {
-console.info( pt );
     var html_before = "";
 
     // add delete button, if needed
@@ -198,6 +197,17 @@ function render_point_map( pt ) {
             do_seen(pt, pushpin);
         }
         render_overlay( pt, pushpin );
+
+        try {
+            ga('send', 'event', {
+                eventCategory: 'Map',
+                eventAction: pt.provider + " click",
+                eventLabel: 'Point # ' + pt.id,
+                eventValue: 1
+            });
+        } catch( e ) {
+
+        }
     });
     map.entities.push(pushpin);
     rendered_pts.push( pushpin );
