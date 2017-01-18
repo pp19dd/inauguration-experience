@@ -16,7 +16,7 @@ last inauguration breakdown:
     string length of all ids: 459 bytes, within cookie size range
 */
 
-$data = json_decode(file_get_contents("inauguration.json"));
+$data = json_decode(file_get_contents("inauguration-2017.json"));
 echo json_encode( $data->list );
 
 /*

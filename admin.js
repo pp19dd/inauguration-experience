@@ -1,6 +1,13 @@
 var new_point = null;
 
 $(document).ready(function() {
+    var edit_key = localStorage.getItem("inauguration-map-edit-key");
+    if( edit_key === null ) return;
+
+    do_admin_setup();
+});
+
+function do_admin_setup() {
 
     var node_admin = $(
         "<admin class='fontly'></admin>"
@@ -10,7 +17,6 @@ $(document).ready(function() {
 
     var b_hide = $("<button>Hide Finished Points</button>");
     var b_add = $("<button>Add New point</button>");
-    var b_pwd = $("<div>Edit Password: <input id='pwd' type='text' style='width:300px' autocomplete='off' spellcheck='no'></div>");
 
     b_hide.click(function() {
         b_hide.toggleClass("admin-active");
@@ -87,4 +93,4 @@ $(document).ready(function() {
     node_admin.append( b_hide );
     node_admin.append( b_add );
     node_admin.append( b_pwd );
-});
+}

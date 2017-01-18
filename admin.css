@@ -35,3 +35,8 @@ admin .admin-active {
 }
 
 #preview, #save { margin-top: 1em }
+
+#ie-pwd {
+    padding:1em;
+    width: 50%;
+}

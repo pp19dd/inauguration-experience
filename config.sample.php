@@ -2,6 +2,9 @@
 
 # define("DEV", true);
 
+// can't be blank
+$admin_password = "";
+
 // no trailing slash
 $url = "http://localhost";
 
