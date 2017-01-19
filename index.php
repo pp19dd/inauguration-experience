@@ -78,13 +78,13 @@ ga('send', 'pageview');
             </div>
             <div class="totals fontly">
                 <p><span><?php echo $text->counts_all ?></span></p>
-                <table class="because" width="100%">
+                <table class="because" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td class="unseen count_top seen_twitter">Twitter</td>
-                        <td class="unseen count_top seen_instagram">Instagram</td>
-                        <td class="unseen count_top seen_youtube">Youtube</td>
-                        <td class="unseen count_top seen_soundcloud">Soundcloud</td>
-                        <td class="unseen count_top seen_facebook">Facebook</td>
+                        <th class="unseen count_top seen_twitter"><span class="count-label">Twitter</span></th>
+                        <th class="unseen count_top seen_instagram"><span class="count-label">Instagram</span></th>
+                        <th class="unseen count_top seen_youtube"><span class="count-label">YouTube</span></th>
+                        <th class="unseen count_top seen_soundcloud"><span class="count-label">Soundcloud</span></th>
+                        <th class="unseen count_top seen_facebook"><span class="count-label">Facebook</span></th>
                     </tr>
                     <tr>
                         <td class="unseen count_bottom seen_twitter">0</td>

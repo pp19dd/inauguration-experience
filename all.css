@@ -1,4 +1,4 @@
-body, html { margin: 0; padding:0; width: 100%; height: 100%; }
+body, html { margin: 0; padding:0; width: 100%; height: 100%; color: #333; }
 header, h1, content p, .fontly { font-family: 'Raleway', sans-serif; font-weight: normal; }
 content, intro { display: block }
 
@@ -27,6 +27,7 @@ img { display: block; }
 }
 
 header {
+    /*border-bottom: 4px solid #d41010;*/
     margin: 0 auto;
     max-width: 1280px;
     padding: .5em 0;
@@ -53,13 +54,22 @@ header a {
     text-decoration: none;
 }
 
+header > nav {
+    clear: both;
+    margin: 0 5%;
+    padding-top: .5em;
+    text-align: right;
+}
+
 header > nav > ul {
     margin: 0;
     padding: 0;
 }
 
 header > nav > ul > li {
+    border-top: 1px solid #444;
     list-style: none;
+    padding: .5em;
 }
 
 .bunting {
@@ -85,7 +95,7 @@ header > nav > ul > li {
 
 #shareTwitter .header-icon  { background-position: 0 -60px; }
 #shareFacebook .header-icon { background-position: 5px -90px; }
-#menuButton.header-icon     { background-position: 0 -30px; float: right; margin-right: calc(5% + 1em); }
+#menuButton.header-icon     { background-position: 0 -30px; float: right; margin-right: 5%; }
 
 
 #map-row {
@@ -93,10 +103,12 @@ header > nav > ul > li {
     display: block;
 }
 #embed {
-    width: 100%;
+    margin-top: .5em;
+    max-width: 100%;
     overflow: hidden;
+    width: 100%;
 }
-.unused { background-color: #dddddd }
+.unused { background-color: #ddd; }
 
 #inauguration-map {
     width:100%;
@@ -135,14 +147,49 @@ intro text { display:block; padding-top: 1em; padding-bottom:1em; }
 shout { display: block }
 shout img { width: 100% }
 
-.count_bottom { font-weight: bold }
+
+.because {
+    width: 100%;
+}
+
+.because th, 
+.because td {
+    font-family: Arial, sans-serif;
+    font-size: .8em;
+    letter-spacing: .05em;
+}
+
+.because th {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
+    vertical-align: middle;
+    text-align: center;
+    height: 32px;
+    width: 32px;
+}
+
+th.seen_facebook   { background-image: url(img/font-awesome_4-7-0_facebook-square_64_0_1330bf_none.png); }
+th.seen_instagram  { background-image: url(img/font-awesome_4-7-0_instagram_64_0_1330bf_none.png); }
+th.seen_soundcloud { background-image: url(img/font-awesome_4-7-0_soundcloud_64_0_1330bf_none.png); }
+th.seen_twitter    { background-image: url(img/font-awesome_4-7-0_twitter-square_64_0_1330bf_none.png); }
+th.seen_youtube    { background-image: url(img/font-awesome_4-7-0_youtube-square_64_0_1330bf_none.png); }
+
+.count-label { display: none; visibility: hidden; }
+
+.because td { 
+    font-weight: bold; 
+    padding-top: .25em;
+    text-align: center;
+}
+
 .unseen { opacity: 0.3 }
 
 footer { height: 10em; }
 
 p.instructions { padding: 2em }
 
-.because td { width: 20% }
+
 
 
 
@@ -168,6 +215,7 @@ p.instructions { padding: 2em }
         display: flex;
     }
     #embed {
+        margin-top: 0;
         width: 35%;
         overflow: hidden;
     }
@@ -178,6 +226,67 @@ p.instructions { padding: 2em }
         position: relative;
         height: 500px;
         margin-right:1em;
+    }
+    
+    .because th {
+        background-position: 0% 50%;
+        background-size: 24px 24px;
+        text-align: left;
+        height: 24px;
+        width: 24px;
+    }
+    
+    .count-label { 
+        display: inline-block;
+        font-weight: normal;
+        padding-left: 32px;
+        visibility: visible;
+    }
+    
+    .because td {
+        padding-left: 32px;
+        text-align: left;
+    }
+
+}
+
+
+
+
+
+@media (min-width: 800px) {
+    
+    .because th, 
+    .because td {
+        font-size: 1em;
+    }
+    
+}
+
+
+
+
+
+@media (min-width: 1000px) {
+    
+    .because th, 
+    .because td {
+        font-size: 1.2em;
+    }
+    
+    .because th {
+        background-size: 32px 32px;
+        height: 32px;
+        width: 32px;
+    }
+    
+    .count-label { 
+        padding-left: 40px;
+    }
+    
+    .because td {
+        padding-top: 0;
+        padding-left: 40px;
     }
 
 }
