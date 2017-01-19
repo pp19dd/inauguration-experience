@@ -1,5 +1,5 @@
 <?php
-require( "config.php" );
+require_once( "config.php" );
 $ret = array();
 
 // ---------------------------------------------------------------------------
@@ -45,7 +45,7 @@ if( $_POST['pwd'] !== $admin_password ) {
 }
 
 // nodb :/
-$data = json_decode(file_get_contents("inauguration-2017.json"), true);
+$data = json_decode(file_get_contents($data_file), true);
 
 function simple_provider_detector($code) {
     if( stripos($code, "platform.twitter.com") !== false ) return( "twitter" );
@@ -78,12 +78,8 @@ $new = array(
 );
 
 $data["list"][] = $new;
-file_put_contents("inauguration-2017.json", json_encode($data));
+file_put_contents($data_file, json_encode($data));
 $ret["status"] = "good";
-# $data = json_decode(file_get_contents("inauguration-2017.json"), true);
-#$ret["message"] = "<pre>" . htmlentities(print_r($data["list"][0], true)) . "</pre>";
-#$ret["message"] = "<pre>" . htmlentities(print_r($_POST, true)) . "</pre>";
 
 echo json_encode($ret);
 die;
-#echo json_encode( $data->list );

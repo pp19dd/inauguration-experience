@@ -5,6 +5,9 @@
 // can't be blank
 $admin_password = "";
 
+// touch the file at launch
+$data_file = "inauguration.json";
+
 // no trailing slash
 $url = "http://localhost";
 

@@ -1,4 +1,4 @@
-<?php require( "config.php" ); ?>
+<?php require_once( "config.php" ); ?>
 <!doctype html>
 <html>
 <head>
@@ -107,7 +107,6 @@ a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
             <range class="range">
                 <div class="fontly range_label" id="ranger_left"><?php echo $text->rewinder ?></div>
                 <div id="ranger"></div>
-                <div class="fontly range_label" id="ranger_right"><?php echo date("h:i A") ?></div>
             </range>
             <div id="map-row">
                 <div id="inauguration-map"></div>

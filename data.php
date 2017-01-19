@@ -1,4 +1,6 @@
 <?php
+require_once( "config.php" );
+
 /*
 last inauguration breakdown:
 
@@ -16,7 +18,7 @@ last inauguration breakdown:
     string length of all ids: 459 bytes, within cookie size range
 */
 
-$data = json_decode(file_get_contents("inauguration-2017.json"));
+$data = json_decode(file_get_contents($data_file));
 echo json_encode( $data->list );
 
 /*
