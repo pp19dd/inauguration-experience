@@ -31,6 +31,7 @@ $(document).ready(function() {
 
     noUiSlider.create(slider, {
     	start: [ 0, 10 ],
+        tooltips: [true, true],
         behaviour: 'drag',
         connect: true,
         range: {
