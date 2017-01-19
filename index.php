@@ -6,11 +6,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
+    <link rel="canonical" href="<?php echo $url ?>" />
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
     <link href="lib/nouislider.min.css" rel="stylesheet" />
     <link href="all.css?ver=<?php echo $version ?>" rel="stylesheet" />
     <link href="admin.css?ver=<?php echo $version ?>" rel="stylesheet" />
+
+    <meta property="og:title" content="<?php echo $text->title ?>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="<?php echo $url ?>" />
+    <meta property="og:image" content="" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="lib/nouislider.min.js?ver=<?php echo $version ?>"></script>
@@ -32,7 +37,43 @@ ga('send', 'pageview');
 
 </head>
 <body>
+<script type="text/javascript">
+var utag_data = {
+    entity:"VOA",
+    language:"English",
+    language_service:"VOA English",
+    short_language_service:"ENG",
+    property_id:"600",
+    platform:"Responsive",
+    platform_short:"R",
+    runs_js:"Yes",
+    section:"Special Projects",
+    english_section:"special-projects",
+    page_title:"<?php echo $text->title ?>",
+    page_type:"interactive",
+    page_name:"<?php echo $text->title ?>",
+    short_headline:"<?php echo $text->title ?>",
+    long_headline:"<?php echo $text->title ?>",
+    headline:"<?php echo $text->title ?>",
+    content_type:"interactive",
+    pub_year:"2017",
+    pub_month:"01",
+    pub_day:"20",
+    pub_weekday:"Friday",
+    byline:"VOA News",
+    slug:"inauguration-experience"
+}
+</script>
+
 <?php if( !defined("DEV") ) { ?>
+
+<script type=""text/javascript"">
+(function(a,b,c,d){
+a='//tags.tiqcdn.com/utag/bbg/voa-nonpangea/prod/utag.js';
+b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+})();
+</script>
 
 <?php } ?>
 
@@ -44,7 +85,7 @@ ga('send', 'pageview');
             <nav id="main-nav" role="navigation" class="main-menu-nav">
                 <ul id="main-menu">
                     <li id="comparison"><a href="http://projects.voanews.com/inaugural-comparison/">Comparing the speeches</a></li>
-                    <li id="bingo"><a href="http://projects.voanews.com/trump-bingo/voa.html">Bingo</a></li>
+                    <!--<li id="bingo"><a href="http://projects.voanews.com/trump-bingo/voa.html">Bingo</a></li>-->
                     <li id="map"><a href="http://projects.voanews.com/inauguration-experience/">Map</a></li>
 
                     <li><a id="shareTwitter" href="javascript:void(0);"><span class="header-icon"></span><span class="social-share-text">Share on Twitter</span></a>
