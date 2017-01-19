@@ -27,22 +27,6 @@ function recompute_slider() {
 }
 
 $(document).ready(function() {
-    /*
-    $("#ranger").rangeslider({
-        polyfill: false,
-
-        // Default CSS classes
-        rangeClass: 'rangeslider',
-        disabledClass: 'rangeslider--disabled',
-        horizontalClass: 'rangeslider--horizontal',
-        verticalClass: 'rangeslider--vertical',
-        fillClass: 'rangeslider__fill',
-        handleClass: 'rangeslider__handle',
-        onSlide: function(position, value) {
-            map_show_points(value);
-        }
-    });
-    */
     slider = $("#ranger")[0];
 
     noUiSlider.create(slider, {
@@ -116,9 +100,6 @@ function render_counts() {
             node_top.removeClass("unseen");
         }
     })(k);
-    // $("#seen_" + pt.provider).html( seen[pt.provider] );
-    // $("#seen_total").html( seen.total );
-
 }
 
 function render_point_shout( pt ) {
