@@ -46,7 +46,7 @@ function GetMap() {
 function recompute_slider() {
     // $("#ranger").attr("max", rendered_pts.length);
     // $("#ranger").rangeslider("update", true);
-    var slider_max = rendered_pts.length;
+    var slider_max = rendered_pts.length - 1;
     if( slider_max === 0 ) slider_max = 1;
 
     slider.noUiSlider.updateOptions({
@@ -104,9 +104,13 @@ function init_slider() {
     slider.noUiSlider.on("update", function(r) {
         var a = parseInt(r[0]);
         var b = parseInt(r[1]);
+
+        var label_b = time_lookup.to[b];
+
+        if( b === time_lookup.to.length - 1 ) label_b = "Now";
         // this is the weirdest hack i've had to use in awhile
         $(".noUi-handle:eq(0) .noUi-tooltip").html( time_lookup.to[a] );
-        $(".noUi-handle:eq(1) .noUi-tooltip").html( time_lookup.to[a] );
+        $(".noUi-handle:eq(1) .noUi-tooltip").html( label_b );
         map_show_points(a, b);
     });
 }
