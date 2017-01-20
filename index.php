@@ -12,10 +12,21 @@
     <link href="all.css?ver=<?php echo $version ?>" rel="stylesheet" />
     <link href="admin.css?ver=<?php echo $version ?>" rel="stylesheet" />
 
+    <meta name="description" content="<?php echo $text->tweet ?>" />
+
     <meta property="og:title" content="<?php echo $text->title ?>" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="<?php echo $url ?>" />
-    <meta property="og:image" content="" />
+    <meta property="og:image" content="<?php echo $url ?>/img/inauguration-experience.jpg" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@voanews" />
+	<meta name="twitter:creator" content="@pp19dd" />
+	<meta property="twitter:title" content="<?php echo $text->title ?>" />
+	<meta property="twitter:description" content="<?php echo $text->tweet ?>" />
+	<meta property="twitter:image" content="<?php echo $url ?>/img/inauguration-experience.jpg" />
+    <meta name="twitter:url" content="<?php echo $url ?>/" />
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="lib/nouislider.min.js?ver=<?php echo $version ?>"></script>
@@ -89,7 +100,7 @@ a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
                     <li id="map"><a href="http://projects.voanews.com/inauguration-experience/">Map</a></li>
 
                     <li><a id="shareTwitter" href="javascript:void(0);"><span class="header-icon"></span><span class="social-share-text">Share on Twitter</span></a>
-                    </li><li><a id="shareFacebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fprojects.voanews.com%2F"><span class="header-icon"></span><span class="social-share-text">Share on Facebook</span></a>
+                    </li><li><a id="shareFacebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($url . '/'); ?>"><span class="header-icon"></span><span class="social-share-text">Share on Facebook</span></a>
                 </li></ul>
             </nav>
         </header>
@@ -165,6 +176,13 @@ var config = {
         $( '#menuButton' ).click( function() {
             $( '#main-nav' ).toggle();
         });
+
+        $('#shareTwitter').click(function(){
+    		var url = "<?php echo $url ?>/";
+    		var text = <?php echo json_encode($text->tweet) ?>;
+    		window.open('http://twitter.com/share?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text), '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    	})
+
     });
 </script>
 
