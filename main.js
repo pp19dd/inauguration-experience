@@ -41,6 +41,9 @@ function GetMap() {
     });
 
     update_data();
+    setInterval(function() {
+        update_data();
+    }, 1000 * 240);
 }
 
 function recompute_slider() {
