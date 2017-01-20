@@ -61,6 +61,7 @@ if( isset( $_POST['point_id']) ) {
     }
 
     if( $count_deleted > 0 ) {
+        $data["clock"] = time();
         file_put_contents($data_file, json_encode($data));
         $ret["status"] = "good";
         $ret["message"] = "Point # " . $_POST['point_id'] . " deleted.";
@@ -94,8 +95,11 @@ function get_new_id($list) {
 }
 
 // new object
+date_default_timezone_set('America/New_York');
 $new = array(
     "id" => get_new_id($data["list"]),
+    "stamp" => date("r"),
+    "stamp_english" => date("g:i a"),
     "is_deleted" => "No",
     "destination" => "Top",
     "provider" => simple_provider_detector($_POST['code']),
@@ -121,6 +125,7 @@ if( $new["provider"] === "unknown" ) {
 
 // everything fine, lets save it
 $data["list"][] = $new;
+$data["clock"] = time();
 file_put_contents($data_file, json_encode($data));
 $ret["status"] = "good";
 
