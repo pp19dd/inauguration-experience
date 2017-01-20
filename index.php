@@ -133,16 +133,16 @@ a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
                     <tr>
                         <th class="unseen count_top seen_twitter"><span class="count-label">Twitter</span></th>
                         <th class="unseen count_top seen_instagram"><span class="count-label">Instagram</span></th>
-                        <th class="unseen count_top seen_youtube"><span class="count-label">YouTube</span></th>
-                        <th class="unseen count_top seen_soundcloud"><span class="count-label">Soundcloud</span></th>
                         <th class="unseen count_top seen_facebook"><span class="count-label">Facebook</span></th>
+                        <th style="opacity:0" class="unseen count_top seen_youtube"><span class="count-label">YouTube</span></th>
+                        <th style="opacity:0" class="unseen count_top seen_soundcloud"><span class="count-label">Soundcloud</span></th>
                     </tr>
                     <tr>
                         <td class="unseen count_bottom seen_twitter">0</td>
                         <td class="unseen count_bottom seen_instagram">0</td>
-                        <td class="unseen count_bottom seen_youtube">0</td>
-                        <td class="unseen count_bottom seen_soundcloud">0</td>
                         <td class="unseen count_bottom seen_facebook">0</td>
+                        <td style="opacity:0" class="unseen count_bottom seen_youtube">0</td>
+                        <td style="opacity:0" class="unseen count_bottom seen_soundcloud">0</td>
                     </tr>
                 </table>
                 <p id="reset_link"><a href="#"><?php echo $text->reset ?></a></p>
