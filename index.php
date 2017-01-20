@@ -78,7 +78,7 @@ var utag_data = {
 
 <?php if( !defined("DEV") ) { ?>
 
-<script type=""text/javascript"">
+<script type="text/javascript">
 (function(a,b,c,d){
 a='//tags.tiqcdn.com/utag/bbg/voa-nonpangea/prod/utag.js';
 b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
