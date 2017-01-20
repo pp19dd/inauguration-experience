@@ -314,6 +314,8 @@ function update_data() {
             if( first_render === false && e.length > 0 ) {
                 first_render = true;
                 init_slider();
+            } else {
+                $("p.instructions").html( text.notyet );
             }
 
             recompute_slider();

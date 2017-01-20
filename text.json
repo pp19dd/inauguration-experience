@@ -8,6 +8,7 @@
         "rewinder": "Timeline",
         "instructions": "To get started, click or tap a map point.",
         "reset": "Reset previously viewed items.",
-        "tweet": "What's it like to attend President Trump's inauguration? Experience it by following our interactive map! #voainaug"
+        "tweet": "What's it like to attend President Trump's inauguration? Experience it by following our interactive map! #voainaug",
+        "notyet": "Our reporters haven't started populating the inauguration map yet. Please check in soon for updates!"
     }
 }
