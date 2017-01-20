@@ -61,7 +61,7 @@ function init_slider() {
     noUiSlider.create(slider, {
         start: [ 0, rendered_pts.length ],
         tooltips: [true, true],
-        format: {
+        xformat: {
             to: function(v) { // encode
                 if( typeof time_lookup.to[parseInt(v)] == "undefined" ) {
                     return(
@@ -102,7 +102,12 @@ function init_slider() {
     });
 
     slider.noUiSlider.on("update", function(r) {
-        map_show_points(parseInt(r[0]), parseInt(r[1]));
+        var a = parseInt(r[0]);
+        var b = parseInt(r[1]);
+        // this is the weirdest hack i've had to use in awhile
+        $(".noUi-handle:eq(0) .noUi-tooltip").html( time_lookup.to[a] );
+        $(".noUi-handle:eq(1) .noUi-tooltip").html( time_lookup.to[a] );
+        map_show_points(a, b);
     });
 }
 
