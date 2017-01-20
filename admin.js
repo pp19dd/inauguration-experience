@@ -37,7 +37,11 @@ function do_admin_setup() {
 
         new_point = new Microsoft.Maps.Pushpin(map.getCenter());
         new_point.setOptions({
-            draggable: true
+            draggable: true,
+            icon: "img/map-new.png",
+            width: 32,
+            height: 37,
+            anchor: new Microsoft.Maps.Point(15, 34)
         });
 
         Microsoft.Maps.Events.addHandler(new_point, 'drag', function(x) {
@@ -63,6 +67,7 @@ function do_admin_setup() {
 
         b_preview.click(function() {
             var code = $("#code").val();
+            $("#preview-block").removeClass("error");
             $("#preview-block").html( code );
         });
 
@@ -78,13 +83,20 @@ function do_admin_setup() {
                     code: $("#code").val()
                 },
                 success: function(e) {
-                    //console.info( e );
-                    // assume success
-
                     $("#preview-block").html(e.message);
-                    $("#code").val("");
-                    map.entities.remove(new_point);
-                    new_point = null;
+
+                    if( e.status === "good" ) {
+                        map.entities.remove(new_point);
+                        new_point = null;
+                        $("#preview-block").removeClass("error");
+                        $("#preview-block").addClass("everything-ok");
+                        $("#code, #save, #preview").remove();
+
+                        update_data();
+                    } else {
+                        $("#preview-block").addClass("error");
+                        $("#preview-block").removeClass("everything-ok");
+                    }
                 }
             })
         });

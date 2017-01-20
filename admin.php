@@ -53,6 +53,7 @@ function simple_provider_detector($code) {
     if( stripos($code, "platform.instagram.com") !== false ) return( "instagram" );
     if( stripos($code, "https://www.youtube.com") !== false ) return( "youtube" );
     if( stripos($code, "https://w.soundcloud.com/") !== false ) return( "soundcloud" );
+    return( "unknown" );
 }
 
 function get_new_id($list) {
@@ -77,6 +78,21 @@ $new = array(
     "embed" => $_POST["code"]
 );
 
+if( $new["provider"] === "unknown" ) {
+    $ret["status"] = "bad";
+    $ret["message"] =
+        "ERROR: can't save this because it doesn't look like valid embed " .
+        " code.   Please check it and make sure it previews.  <br/><br/>" .
+        "You can only use official twitter, instagram, youtube, soundcloud " .
+        "or facebook code.";
+
+    echo json_encode($ret);
+    die;
+} else {
+    $ret["message"] = "Added " . $new["provider"] . " to map.";
+}
+
+// everything fine, lets save it
 $data["list"][] = $new;
 file_put_contents($data_file, json_encode($data));
 $ret["status"] = "good";

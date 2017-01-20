@@ -173,7 +173,8 @@ function render_point_map( pt ) {
         new Microsoft.Maps.Location(pt.lat, pt.lng), {
             icon: "img/map-" + pt.provider + ".png",
             width: 32,
-            height: 37
+            height: 37,
+            anchor: new Microsoft.Maps.Point(15, 34)
         }
     );
 
