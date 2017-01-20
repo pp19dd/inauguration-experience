@@ -110,6 +110,12 @@ function do_admin_setup() {
             var code = $("#code").val();
             $("#preview-block").removeClass("error");
             $("#preview-block").html( code );
+
+            try {
+                instgrm.Embeds.process();
+            } catch( e ) {
+
+            }
         });
 
         b_save.click(function() {

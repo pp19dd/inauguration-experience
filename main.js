@@ -194,6 +194,13 @@ function render_overlay( pt, pushpin ) {
 
     $("#embed").removeClass("unused");
     $("#embed_inner").html( html_before + pt.embed );
+    if( pt.provider == "instagram" ) {
+        try {
+            instgrm.Embeds.process();
+        } catch( e ) {
+
+        }
+    }
 }
 
 function map_show_points( start, cutoff ) {
