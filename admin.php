@@ -48,9 +48,35 @@ if( $_POST['pwd'] !== $admin_password ) {
 $data = json_decode(file_get_contents($data_file), true);
 
 // ---------------------------------------------------------------------------
+// update time
+// ---------------------------------------------------------------------------
+/*
+if( isset( $_POST['action'] ) && $_POST['action'] == 'time' ) {
+    $ret["status"] = "bad";
+    $ret["message"] = "lol";
+
+    date_default_timezone_set('America/New_York');
+    $timestamp = time();
+
+    if( isset( $_POST['time']) && strlen(trim($_POST['time'])) > 0 ) {
+        $timestamp = strtotime($_POST['time']);
+    }
+
+    $new_stamp = date("r", $timestamp );
+    $new_stamp_english = date("g:i a",  $timestamp);
+
+    $ret["message"] = "Time set to " . $new_stamp_english;
+
+    echo json_encode($ret);
+    die;
+}
+*/
+
+// ---------------------------------------------------------------------------
 // delete
 // ---------------------------------------------------------------------------
-if( isset( $_POST['point_id']) ) {
+// if( isset( $_POST['action'] ) && $_POST['action'] == 'delete' ) {
+if( isset( $_POST["point_id"]) ) {
 
     $count_deleted = 0;
     foreach( $data["list"] as $k => $v ) {
@@ -96,10 +122,16 @@ function get_new_id($list) {
 
 // new object
 date_default_timezone_set('America/New_York');
+$timestamp = time();
+
+if( isset( $_POST['time']) && strlen(trim($_POST['time'])) > 0 ) {
+    $timestamp = strtotime($_POST['time']);
+}
+
 $new = array(
     "id" => get_new_id($data["list"]),
-    "stamp" => date("r"),
-    "stamp_english" => date("g:i a"),
+    "stamp" => date("r", $timestamp),
+    "stamp_english" => date("g:i a",  $timestamp),
     "is_deleted" => "No",
     "destination" => "Top",
     "provider" => simple_provider_detector($_POST['code']),

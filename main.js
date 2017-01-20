@@ -180,7 +180,16 @@ function render_overlay( pt, pushpin ) {
     // add delete button, if needed
     var edit_key = localStorage.getItem("inauguration-map-edit-key");
     if( edit_key !== null ) {
-        html_before = "<button class='delete-button' onclick='do_delete(" + pt.id + ")'>Delete pt # " + pt.id + "</button><br/>";
+        html_before =
+            "<button class='delete-button' " +
+            "onclick='do_delete(" + pt.id + ")'>Delete pt # " +
+            pt.id + "</button>  ";/* +
+            "Time: " +
+            "<input type='text' autocomplete='off' " +
+            "value='" + pt.stamp_english + "' " +
+            "id='edit_timestamp'/>" +
+            "<button onclick='do_update_time(" + pt.id + ")'>" +
+            "Update</button><br/>";*/
     }
 
     $("#embed").removeClass("unused");

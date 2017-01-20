@@ -7,6 +7,29 @@ $(document).ready(function() {
     do_admin_setup();
 });
 
+function do_update_time(id) {
+    var timestamp = $("#edit_timestamp").val();
+
+    var reply = confirm("Do you want to update time for point # " + id + " ?");
+    if( !reply ) return;
+
+    $.ajax({
+        url: "admin.php",
+        dataType: "json",
+        method: "post",
+        data: {
+            action: 'time',
+            pwd: localStorage.getItem("inauguration-map-edit-key"),
+            point_id: id,
+            time: timestamp
+        },
+        success: function(e) {
+            $("#embed_inner").html(e.message);
+        }
+    })
+
+}
+
 function do_delete(id) {
     var reply = confirm("Do you want to delete point # " + id + " ?");
     if( !reply ) return;
@@ -16,6 +39,7 @@ function do_delete(id) {
         dataType: "json",
         method: "post",
         data: {
+            action: 'delete',
             pwd: localStorage.getItem("inauguration-map-edit-key"),
             point_id: id
         },
@@ -23,7 +47,6 @@ function do_delete(id) {
             $("#embed_inner").html(e.message);
         }
     })
-
 }
 
 function do_admin_setup() {
@@ -74,6 +97,9 @@ function do_admin_setup() {
             "<p>Lat: <span id='lat'>0</span>, lng: <span id='lng'>0</span>" +
             "<p>Embed code (instagram / fb / twitter / etc.):</p>" +
             "<textarea id='code'></textarea>" +
+            "<p>Time: " +
+            "<input id='create-timestamp' type='text' autocomplete='off' />" +
+            "</p><p>Format ex: 9:40 am.  Leave blank for 'now'.</p>" +
             "</div>"
         );
 
@@ -95,6 +121,7 @@ function do_admin_setup() {
                     pwd: localStorage.getItem("inauguration-map-edit-key"),
                     lat: new_point.getLocation().latitude,
                     lng: new_point.getLocation().longitude,
+                    time: $("#create-timestamp").val(),
                     code: $("#code").val()
                 },
                 success: function(e) {

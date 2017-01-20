@@ -27,6 +27,15 @@ foreach( $data->list as $k => $v ) {
     }
 }
 
+// sort by timestamp
+function bystamp($a, $b) {
+    $p1 = strtotime($a->stamp);
+    $p2 = strtotime($b->stamp);
+    if( $p1 > $p2 ) return( true );
+    return( false );
+}
+usort($clean_list, "bystamp");
+
 echo json_encode( $clean_list );
 
 #echo json_encode( $data->list );
