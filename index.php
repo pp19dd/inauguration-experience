@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="canonical" href="<?php echo $url ?>" />
+    <link rel="canonical" href="<?php echo $url ?>/" />
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
     <link href="lib/nouislider.min.css" rel="stylesheet" />
     <link href="all.css?ver=<?php echo $version ?>" rel="stylesheet" />
@@ -16,7 +16,7 @@
 
     <meta property="og:title" content="<?php echo $text->title ?>" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="<?php echo $url ?>" />
+    <meta property="og:url" content="<?php echo $url ?>/" />
     <meta property="og:image" content="<?php echo $url ?>/img/inauguration-experience.jpg" />
 
     <meta property="twitter:card" content="summary_large_image" />
