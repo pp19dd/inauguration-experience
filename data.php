@@ -19,7 +19,17 @@ last inauguration breakdown:
 */
 
 $data = json_decode(file_get_contents($data_file));
-echo json_encode( $data->list );
+$clean_list = array();
+
+foreach( $data->list as $k => $v ) {
+    if( $v->is_deleted == "No" ) {
+        $clean_list[] = $v;
+    }
+}
+
+echo json_encode( $clean_list );
+
+#echo json_encode( $data->list );
 
 /*
 [0] => stdClass Object

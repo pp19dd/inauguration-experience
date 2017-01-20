@@ -49,14 +49,22 @@ function recompute_slider() {
     var slider_max = rendered_pts.length - 1;
     if( slider_max === 0 ) slider_max = 1;
 
-    slider.noUiSlider.updateOptions({
-        range: { min: 0, max: slider_max }
-    });
-    slider.noUiSlider.set([null, rendered_pts.length]);
+    try {
+        slider.noUiSlider.updateOptions({
+            range: { min: 0, max: slider_max }
+        });
+        slider.noUiSlider.set([null, rendered_pts.length]);
+    } catch( e ) {
+
+    }
 }
 
 function init_slider() {
-    slider = $("#ranger")[0];
+    try {
+        slider = $("#ranger")[0];
+    } catch( e ) {
+        return;
+    }
 
     noUiSlider.create(slider, {
         start: [ 0, rendered_pts.length ],
@@ -105,11 +113,16 @@ function init_slider() {
         var a = parseInt(r[0]);
         var b = parseInt(r[1]);
 
+        var label_a = time_lookup.to[a];
         var label_b = time_lookup.to[b];
 
         if( b === time_lookup.to.length - 1 ) label_b = "Now";
+
+        if( label_a === "NaN" ) label_a = " ";
+        if( label_b === "NaN" ) label_b = " ";
+
         // this is the weirdest hack i've had to use in awhile
-        $(".noUi-handle:eq(0) .noUi-tooltip").html( time_lookup.to[a] );
+        $(".noUi-handle:eq(0) .noUi-tooltip").html( label_a );
         $(".noUi-handle:eq(1) .noUi-tooltip").html( label_b );
         map_show_points(a, b);
     });
@@ -295,12 +308,10 @@ function update_data() {
                 time_lookup.from.push(i);
                 time_lookup.to.push(pt.stamp_english);
 
-                if( pt.is_deleted === "No" ) {
-                    render_point( pt );
-                }
+                render_point( pt );
             })(e[i]);
 
-            if( first_render === false ) {
+            if( first_render === false && e.length > 0 ) {
                 first_render = true;
                 init_slider();
             }
