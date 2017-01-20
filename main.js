@@ -233,7 +233,9 @@ function update_data() {
         dataType: "json",
         success: function(e) {
             for( var i = 0; i < e.length; i++ )(function(pt) {
-                render_point( pt );
+                if( pt.is_deleted === "No" ) {
+                    render_point( pt );
+                }
             })(e[i]);
 
             recompute_slider();

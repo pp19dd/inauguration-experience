@@ -8,7 +8,22 @@ $(document).ready(function() {
 });
 
 function do_delete(id) {
-    alert( "Deleting point # " + id + " (disabled until launch)" );
+    var reply = confirm("Do you want to delete point # " + id + " ?");
+    if( !reply ) return;
+
+    $.ajax({
+        url: "admin.php",
+        dataType: "json",
+        method: "post",
+        data: {
+            pwd: localStorage.getItem("inauguration-map-edit-key"),
+            point_id: id
+        },
+        success: function(e) {
+            $("#embed_inner").html(e.message);
+        }
+    })
+
 }
 
 function do_admin_setup() {

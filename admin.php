@@ -47,6 +47,33 @@ if( $_POST['pwd'] !== $admin_password ) {
 // nodb :/
 $data = json_decode(file_get_contents($data_file), true);
 
+// ---------------------------------------------------------------------------
+// delete
+// ---------------------------------------------------------------------------
+if( isset( $_POST['point_id']) ) {
+
+    $count_deleted = 0;
+    foreach( $data["list"] as $k => $v ) {
+        if( $v['id'] == $_POST['point_id'] ) {
+            $data["list"][$k]["is_deleted"] = "Yes";
+            $count_deleted++;
+        }
+    }
+
+    if( $count_deleted > 0 ) {
+        file_put_contents($data_file, json_encode($data));
+        $ret["status"] = "good";
+        $ret["message"] = "Point # " . $_POST['point_id'] . " deleted.";
+    } else {
+        $ret["status"] = "bad";
+        $ret["message"] = "Can't delete point # " . $_POST['point_id'];
+    }
+
+    echo json_encode($ret);
+    die;
+}
+
+
 function simple_provider_detector($code) {
     if( stripos($code, "platform.twitter.com") !== false ) return( "twitter" );
     if( stripos($code, "www.facebook.com/plugins/") !== false ) return( "facebook" );
