@@ -1,6 +1,35 @@
 var map;
 var slider;
 var storage_prefix = "inauguration-map-";
+var data_global = null;
+var first_render = false;
+
+// synchronized at each data update
+var time_lookup = {
+    from: [],
+    to: []
+}
+
+var rendered_ids = {};
+var rendered_pts = [];
+var counts = {
+    seen: {
+        twitter: 0,
+        facebook: 0,
+        instagram: 0,
+        soundcloud: 0,
+        youtube: 0,
+        total: 0
+    },
+    available: {
+        twitter: 0,
+        facebook: 0,
+        instagram: 0,
+        soundcloud: 0,
+        youtube: 0,
+        total: 0
+    }
+};
 
 function GetMap() {
     map = new Microsoft.Maps.Map(config.map_id, {
@@ -26,24 +55,58 @@ function recompute_slider() {
     slider.noUiSlider.set([null, rendered_pts.length]);
 }
 
-$(document).ready(function() {
+function init_slider() {
     slider = $("#ranger")[0];
 
     noUiSlider.create(slider, {
-    	start: [ 0, 10 ],
+        start: [ 0, rendered_pts.length ],
         tooltips: [true, true],
+        format: {
+            to: function(v) { // encode
+                if( typeof time_lookup.to[parseInt(v)] == "undefined" ) {
+                    return(
+                        "Now<span class='hidden-tooltip-data'>" + v + "</span>"
+                    );
+                }
+                return(
+                    time_lookup.to[parseInt(v)] + "<span class='hidden-tooltip-data'>" + v + "</span>"
+                );
+                //return(  );
+                // return( "a_" + (v * 3) );
+                for( var i = 0; i < data_global.length; i++ ) {
+                    if( parseInt(v) === i ) {
+                        return( data_global[i].stamp_english );
+                    }
+                }
+            },
+            from: function(v) { // decode
+                //return( time_lookup.to[parseInt(v)] );
+                var x = v.split(":");
+                return( x[0] );
+                // return( parseFloat(x[1]) / 3 );
+                //var x = v.split(":");
+                return( x[0] );
+                for( var i = 0; i < data_global.length; i++ ) {
+                    if( parseInt(v) == data_global[i].stamp_english ) {
+                        return( i );
+                    }
+                }
+            }
+        },
         behaviour: 'drag',
         connect: true,
         range: {
-    		'min': [ 0 ],
-    		'max': [ 10 ]
-    	}
+            'min': [ 0 ],
+            'max': [ 10 ]
+        }
     });
 
     slider.noUiSlider.on("update", function(r) {
         map_show_points(parseInt(r[0]), parseInt(r[1]));
     });
+}
 
+$(document).ready(function() {
     $("#reset_link a").click(function() {
         do_clear();
         render_counts();
@@ -62,27 +125,6 @@ $(document).ready(function() {
         return( false );
     });
 });
-
-var rendered_ids = {};
-var rendered_pts = [];
-var counts = {
-    seen: {
-        twitter: 0,
-        facebook: 0,
-        instagram: 0,
-        soundcloud: 0,
-        youtube: 0,
-        total: 0
-    },
-    available: {
-        twitter: 0,
-        facebook: 0,
-        instagram: 0,
-        soundcloud: 0,
-        youtube: 0,
-        total: 0
-    }
-};
 
 function render_counts() {
     for( var k in counts.seen )(function(key) {
@@ -212,6 +254,9 @@ function render_point_map( pt ) {
 function render_point( pt ) {
     if( typeof rendered_ids[pt.id] != "undefined" ) {
         // point exists, don't duplicate
+
+        // however, hm, it might be deleted, so lets check it.
+
         return;
     } else {
         rendered_ids[pt.id] = 1;
@@ -232,11 +277,24 @@ function update_data() {
         url: "data.php",
         dataType: "json",
         success: function(e) {
+            data_global = [];
+            time_lookup = { from: [], to: [] };
+
             for( var i = 0; i < e.length; i++ )(function(pt) {
+                data_global.push(pt);
+
+                time_lookup.from.push(i);
+                time_lookup.to.push(pt.stamp_english);
+
                 if( pt.is_deleted === "No" ) {
                     render_point( pt );
                 }
             })(e[i]);
+
+            if( first_render === false ) {
+                first_render = true;
+                init_slider();
+            }
 
             recompute_slider();
             render_counts();

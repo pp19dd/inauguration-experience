@@ -132,6 +132,8 @@ div.totals {
 #embed_inner { }
 #embed_inner iframe { width: 100%; max-width: 100% }
 
+.hidden-tooltip-data { display: none }
+.noUi-tooltip { white-space: nowrap; }
 .noUi-connect {
     background-color: #1f2ebb;
 }
@@ -152,7 +154,7 @@ shout img { width: 100% }
     width: 100%;
 }
 
-.because th, 
+.because th,
 .because td {
     font-family: Arial, sans-serif;
     font-size: .8em;
@@ -177,8 +179,8 @@ th.seen_youtube    { background-image: url(img/font-awesome_4-7-0_youtube-square
 
 .count-label { display: none; visibility: hidden; }
 
-.because td { 
-    font-weight: bold; 
+.because td {
+    font-weight: bold;
     padding-top: .25em;
     text-align: center;
 }
@@ -223,7 +225,7 @@ p.instructions { padding: 2em }
         height: 500px;
         margin-right:1em;
     }
-    
+
     .because th {
         background-position: 0% 50%;
         background-size: 24px 24px;
@@ -231,14 +233,14 @@ p.instructions { padding: 2em }
         height: 24px;
         width: 24px;
     }
-    
-    .count-label { 
+
+    .count-label {
         display: inline-block;
         font-weight: normal;
         padding-left: 32px;
         visibility: visible;
     }
-    
+
     .because td {
         padding-left: 32px;
         text-align: left;
@@ -251,12 +253,12 @@ p.instructions { padding: 2em }
 
 
 @media (min-width: 800px) {
-    
-    .because th, 
+
+    .because th,
     .because td {
         font-size: 1em;
     }
-    
+
 }
 
 
@@ -264,9 +266,9 @@ p.instructions { padding: 2em }
 
 
 @media (min-width: 1000px) {
-    
+
     #menuButton.header-icon { display: none; visibility: hidden; }
-    
+
     header > nav {
         display: inline-block !important;
         clear: none;
@@ -287,28 +289,28 @@ p.instructions { padding: 2em }
         list-style: none;
         padding: 0 .5em;
     }
-    
+
     li#comparison,
     li#bingo,
     li#map {
         border-right: 1px #555 solid;
     }
-    
-    .because th, 
+
+    .because th,
     .because td {
         font-size: 1.2em;
     }
-    
+
     .because th {
         background-size: 32px 32px;
         height: 32px;
         width: 32px;
     }
-    
-    .count-label { 
+
+    .count-label {
         padding-left: 40px;
     }
-    
+
     .because td {
         padding-top: 0;
         padding-left: 40px;
